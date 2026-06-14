@@ -11,7 +11,7 @@
         <div class="site-nav-right">
 
             <!-- Nav links -->
-            <ul class="site-nav-menu">
+            <ul class="site-nav-menu" id="navMenu">
                 <li><a href="{{ url('/') }}"        class="nav-link {{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
 
                 @auth
@@ -94,7 +94,12 @@
                     <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill-rule="evenodd"/></svg>
                 </a>
             @endauth
-
+<!-- Hamburger menu (mobile) -->
+            <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div><!-- /navbar-right -->
     </div>
 </nav>
