@@ -8,19 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('pesanans', function (Blueprint $table) {
-            $table->enum('konfirmasi_bayar', [
-                'menunggu',
-                'diterima',
-                'ditolak'
-            ])->default('menunggu')->after('bukti_bayar');
-        });
+        if (!Schema::hasColumn('pesanans', 'konfirmasi_bayar')) {
+            Schema::table('pesanans', function (Blueprint $table) {
+                $table->string('konfirmasi_bayar')->default('menunggu');
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('pesanans', function (Blueprint $table) {
-            $table->dropColumn('konfirmasi_bayar');
-        });
+        if (Schema::hasColumn('pesanans', 'konfirmasi_bayar')) {
+            Schema::table('pesanans', function (Blueprint $table) {
+                $table->dropColumn('konfirmasi_bayar');
+            });
+        }
     }
 };
