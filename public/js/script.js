@@ -1,7 +1,3 @@
-// =======================================================
-//  BioAqua Lab — script.js (FIXED)
-//  Perbaikan: duplikasi event listener form submit digabung
-// =======================================================
 
 const hamburger   = document.getElementById('hamburger');
 const navMenu     = document.getElementById('navMenu');
@@ -12,9 +8,6 @@ const toastMsg    = document.getElementById('toastMsg');
 const formPesanan = document.getElementById('formPesanan');
 const produkGrid  = document.getElementById('produkGrid');
 
-// -------------------------------------------------------
-//  1. TOGGLE MENU HAMBURGER
-// -------------------------------------------------------
 if (hamburger) {
   hamburger.addEventListener('click', function () {
     const isOpen = navMenu.classList.toggle('open');
@@ -23,7 +16,6 @@ if (hamburger) {
   });
 }
 
-// Tutup menu saat link diklik (UX mobile)
 document.querySelectorAll('.nav-link').forEach(function (link) {
   link.addEventListener('click', function () {
     navMenu.classList.remove('open');
@@ -34,26 +26,22 @@ document.querySelectorAll('.nav-link').forEach(function (link) {
   });
 });
 
-// -------------------------------------------------------
-//  2. NAVBAR SCROLL EFFECT + BACK TO TOP VISIBILITY
-// -------------------------------------------------------
 window.addEventListener('scroll', function () {
-  if (window.scrollY > 10) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  if (navbar) {
+    if (window.scrollY > 10) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
   }
-
+  if (backToTop) {
   if (window.scrollY > 350) {
     backToTop.classList.add('visible');
   } else {
     backToTop.classList.remove('visible');
   }
-});
+}});
 
-// -------------------------------------------------------
-//  3. ANIMASI SCROLL — Intersection Observer
-// -------------------------------------------------------
 const aosObserver = new IntersectionObserver(
   function (entries) {
     entries.forEach(function (entry) {
